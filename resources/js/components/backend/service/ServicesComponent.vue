@@ -36,7 +36,7 @@
    </div>
    <div class="tab-pane fade" id="Departments-grid" role="tabpanel">
       <div class="row clearfix">
-
+          <ServiceForm></ServiceForm>
       </div>
    </div>
 </div>
@@ -47,9 +47,11 @@
 
 <script>
 import ServiceTable from "./ServiceTableComponent";
+import ServiceForm from "./ServiceForm";
 export default {
     components:{
         ServiceTable,
+        ServiceForm,
     },
     data(){
         return {
