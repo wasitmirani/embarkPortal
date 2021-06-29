@@ -599,8 +599,10 @@ var staticRenderFns = [
                             attrs: { href: "javascript:void(0)" }
                           },
                           [
-                            _c("i", { staticClass: "dropdown-icon fa fa-eye" }),
-                            _vm._v(" View Details ")
+                            _c("i", {
+                              staticClass: "dropdown-icon fas fa-edit "
+                            }),
+                            _vm._v(" Edit ")
                           ]
                         ),
                         _vm._v(" "),
@@ -612,9 +614,10 @@ var staticRenderFns = [
                           },
                           [
                             _c("i", {
-                              staticClass: "dropdown-icon fa fa-share-alt"
+                              staticClass:
+                                "dropdown-icon fa fa-trash text-danger"
                             }),
-                            _vm._v(" Share ")
+                            _vm._v(" Delete ")
                           ]
                         )
                       ]
@@ -735,13 +738,13 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("div", { staticClass: "header-action" }, [
               _c(
-                "button",
+                "a",
                 {
-                  staticClass: "btn btn-primary",
+                  staticClass: "nav-link",
                   attrs: {
-                    type: "button",
-                    "data-toggle": "modal",
-                    "data-target": "#exampleModal"
+                    id: "Departments-tab",
+                    "data-toggle": "tab",
+                    href: "#Departments-grid"
                   }
                 },
                 [_c("i", { staticClass: "fe fe-plus mr-2" }), _vm._v("Add")]

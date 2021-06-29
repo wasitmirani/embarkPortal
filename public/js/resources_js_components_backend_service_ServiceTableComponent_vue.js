@@ -236,8 +236,10 @@ var staticRenderFns = [
                             attrs: { href: "javascript:void(0)" }
                           },
                           [
-                            _c("i", { staticClass: "dropdown-icon fa fa-eye" }),
-                            _vm._v(" View Details ")
+                            _c("i", {
+                              staticClass: "dropdown-icon fas fa-edit "
+                            }),
+                            _vm._v(" Edit ")
                           ]
                         ),
                         _vm._v(" "),
@@ -249,9 +251,10 @@ var staticRenderFns = [
                           },
                           [
                             _c("i", {
-                              staticClass: "dropdown-icon fa fa-share-alt"
+                              staticClass:
+                                "dropdown-icon fa fa-trash text-danger"
                             }),
-                            _vm._v(" Share ")
+                            _vm._v(" Delete ")
                           ]
                         )
                       ]

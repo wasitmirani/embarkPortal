@@ -8,7 +8,7 @@
             <li class="nav-item"><a class="nav-link" id="Departments-tab" data-toggle="tab" href="#Departments-grid">New Service</a></li>
          </ul>
          <div class="header-action">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fe fe-plus mr-2"></i>Add</button>
+           <a class="nav-link" id="Departments-tab" data-toggle="tab" href="#Departments-grid"><i class="fe fe-plus mr-2"></i>Add</a>
          </div>
       </div>
    </div>
