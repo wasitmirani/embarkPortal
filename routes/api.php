@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('user')->group(function () {
     Route::get('/users',[UserController::class,"getUsers"]);
+});
+
+
+Route::prefix('portal')->group(function () {
+    Route::get('/services',[ServiceController::class,'getServices']);
 });

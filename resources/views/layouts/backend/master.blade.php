@@ -6,9 +6,12 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <link rel="icon" href="favicon.ico" type="image/x-icon">
       <title>{{config('app.name')}}</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="{{asset('/assets/plugins/bootstrap/css/bootstrap.min.css')}}">
+      <link rel="stylesheet" href="{{asset('/assets/plugins/charts-c3/c3.min.css')}}">
       <link rel="stylesheet" href="{{asset('/assets/css/main.css')}}">
-      <link rel="stylesheet" href="{{asset('/assets/css/main2.css')}}">
+      <link rel="stylesheet" href="{{asset('/assets/css/theme1.css')}}">
+
 
    </head>
    <body class="font-montserrat sidebar_dark">

@@ -22,7 +22,7 @@ mix.styles([
         path + "plugins/bootstrap/css/bootstrap.min.css",
         path + "plugins/charts-c3/c3.min.css",
         // path + "css/main.css",
-        path + "css/theme1.css",
+        // path + "css/theme1.css",
     ],
     "public/assets/css/main2.css");
 

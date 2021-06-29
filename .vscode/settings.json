@@ -1,0 +1,7 @@
+{
+    "i18n-ally.localesPaths": [
+        "resources/lang",
+        "public/assets/plugins/bootstrap-datepicker/locales",
+        "resources/backend/assets/plugins/bootstrap-datepicker/locales"
+    ]
+}

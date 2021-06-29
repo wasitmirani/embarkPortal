@@ -3,28 +3,34 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-function setComponent(path_file){
-    const route_path= "./components/backend/" + path_file + "Component.vue";
-    return import(""+route_path);
+function setComponent(path_file) {
+    const route_path = "./components/backend/" + path_file + "Component.vue";
+    return import ("" + route_path);
 }
 
 const routes = [
-    { path: "*", component: ()=>setComponent("error/404") },
+    { path: "*", component: () => setComponent("error/404") },
     {
         path: "/",
         component: () => setComponent("dashboard/Home"),
-        name:"Dashboard",
+        name: "Dashboard",
     },
     {
         path: "/users",
         component: () => setComponent("user/Users"),
-        name:"users",
+        name: "users",
     },
     {
         path: "/roles",
         component: () => setComponent("role/Roles"),
-        name:"users",
+        name: "roles",
     },
+    {
+        path: "/services",
+        component: () => setComponent("service/Services"),
+        name: "Services",
+    },
+
 ];
 
 

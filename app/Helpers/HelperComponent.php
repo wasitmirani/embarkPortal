@@ -31,36 +31,21 @@ class HelperComponent {
                 [
                     "g_heading"=>"DIRECTORIES",
                     "menu"=>[
-                        "title"=>'Payment Management',
-                        "icon"=>"fas fa-money-check",
+                        "title"=>'Variations',
+                        "icon"=>"fab fa-vuejs",
                         "color_code"=>"",
                         "can"=>"",
                         "v-can"=>"",
                         "sub_menu"=>[
                                 setSubMenu(
                                     null,
-                                    "Transactions",
+                                    "Services",
                                     null,
                                     null,
                                     null,
-                                    "/transaction",
+                                    "/services",
                                 ),
-                                setSubMenu(
-                                    null,
-                                    "link Generate",
-                                    null,
-                                    null,
-                                    null,
-                                    "/roles",
-                                ),
-                                setSubMenu(
-                                    null,
-                                    "Permissions",
-                                    null,
-                                    null,
-                                    null,
-                                    "/permissions",
-                                ),
+
                         ],
 
                     ],

@@ -1997,7 +1997,13 @@ var routes = [{
   component: function component() {
     return setComponent("role/Roles");
   },
-  name: "users"
+  name: "roles"
+}, {
+  path: "/services",
+  component: function component() {
+    return setComponent("service/Services");
+  },
+  name: "Services"
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__.default({
   routes: routes,
@@ -39666,6 +39672,26 @@ var map = {
 		9,
 		"resources_js_components_backend_role_RolesComponent_vue"
 	],
+	"./components/backend/service/ServiceTableComponent": [
+		"./resources/js/components/backend/service/ServiceTableComponent.vue",
+		9,
+		"resources_js_components_backend_service_ServiceTableComponent_vue"
+	],
+	"./components/backend/service/ServiceTableComponent.vue": [
+		"./resources/js/components/backend/service/ServiceTableComponent.vue",
+		9,
+		"resources_js_components_backend_service_ServiceTableComponent_vue"
+	],
+	"./components/backend/service/ServicesComponent": [
+		"./resources/js/components/backend/service/ServicesComponent.vue",
+		9,
+		"resources_js_components_backend_service_ServicesComponent_vue"
+	],
+	"./components/backend/service/ServicesComponent.vue": [
+		"./resources/js/components/backend/service/ServicesComponent.vue",
+		9,
+		"resources_js_components_backend_service_ServicesComponent_vue"
+	],
 	"./components/backend/user/UserForm": [
 		"./resources/js/components/backend/user/UserForm.vue",
 		9,
@@ -39869,7 +39895,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_backend_components_SearchInput_vue":1,"resources_js_components_backend_dashboard_HomeComponent_vue":1,"resources_js_components_backend_error_404Component_vue":1,"resources_js_components_backend_role_RolesComponent_vue":1,"resources_js_components_backend_user_UserForm_vue":1,"resources_js_components_backend_user_UserTable_vue":1,"resources_js_components_backend_user_UsersComponent_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_backend_components_SearchInput_vue":1,"resources_js_components_backend_dashboard_HomeComponent_vue":1,"resources_js_components_backend_error_404Component_vue":1,"resources_js_components_backend_role_RolesComponent_vue":1,"resources_js_components_backend_service_ServiceTableComponent_vue":1,"resources_js_components_backend_service_ServicesComponent_vue":1,"resources_js_components_backend_user_UserForm_vue":1,"resources_js_components_backend_user_UserTable_vue":1,"resources_js_components_backend_user_UsersComponent_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
