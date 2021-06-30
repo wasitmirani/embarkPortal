@@ -47,15 +47,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-props: ['services'];
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['services'],
+  methods: {
+    editItem: function editItem(item) {
+      return this.$emit("editItem", item);
+    },
+    deleteItem: function deleteItem(item) {
+      return this.$emit("deleteItem", item);
+    }
+  }
+});
 
 /***/ }),
 
@@ -147,38 +149,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "table-responsive" }, [
-        _c(
-          "table",
-          {
-            staticClass:
-              "table table-vcenter table_custom spacing5 border-style mb-0"
-          },
-          [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { staticClass: "w40" }, [_vm._v("#")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Description")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Created At")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "w40" }, [_vm._v("Action")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
+  return _c("div", [
+    _c("div", { staticClass: "table-responsive" }, [
+      _c(
+        "table",
+        {
+          staticClass:
+            "table table-vcenter table_custom spacing5 border-style mb-0"
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.services, function(item) {
+              return _c("tr", { key: item.id }, [
                 _c("td", [
                   _c(
                     "span",
@@ -188,83 +173,75 @@ var staticRenderFns = [
                         "data-toggle": "tooltip",
                         "data-placement": "top",
                         title: "",
-                        "data-original-title": "Avatar Name"
+                        "data-original-title": item.name
                       }
                     },
-                    [_vm._v("GH")]
+                    [_vm._v(_vm._s(item.name.slice(0, 2).toUpperCase()))]
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v("Michelle Green")]),
+                _c("td", [_vm._v(_vm._s(item.name))]),
                 _vm._v(" "),
-                _c("td", [_vm._v("Description")]),
-                _vm._v(" "),
-                _c("td", [_c("span", [_vm._v("date")])]),
+                _c("td", [_vm._v(_vm._s(item.description))]),
                 _vm._v(" "),
                 _c("td", [
-                  _c("div", { staticClass: "item-action dropdown" }, [
-                    _c(
-                      "a",
-                      {
-                        attrs: {
-                          href: "javascript:void(0)",
-                          "data-toggle": "dropdown",
-                          "aria-expanded": "false"
-                        }
-                      },
-                      [_c("i", { staticClass: "fa fa-ellipsis-h" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "dropdown-menu dropdown-menu-right",
-                        staticStyle: {
-                          position: "absolute",
-                          "will-change": "transform",
-                          top: "0px",
-                          left: "0px",
-                          transform: "translate3d(18px, 25px, 0px)"
-                        },
-                        attrs: { "x-placement": "bottom-end" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "dropdown-item",
-                            attrs: { href: "javascript:void(0)" }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "dropdown-icon fas fa-edit "
-                            }),
-                            _vm._v(" Edit ")
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            staticClass: "dropdown-item",
-                            attrs: { href: "javascript:void(0)" }
-                          },
-                          [
-                            _c("i", {
-                              staticClass:
-                                "dropdown-icon fa fa-trash text-danger"
-                            }),
-                            _vm._v(" Delete ")
-                          ]
-                        )
-                      ]
-                    )
+                  _c("span", [
+                    _vm._v(_vm._s(_vm._f("timeformat")(item.created_at)))
                   ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "a",
+                    {
+                      attrs: { role: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.editItem(item)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-edit" })]
+                  ),
+                  _vm._v(" |\n            "),
+                  _c(
+                    "a",
+                    {
+                      attrs: { role: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteItem(item)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: " fa fa-trash text-danger" })]
+                  )
                 ])
               ])
-            ])
-          ]
-        )
+            }),
+            0
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "w40" }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Created At")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w40" }, [_vm._v("Action")])
       ])
     ])
   }

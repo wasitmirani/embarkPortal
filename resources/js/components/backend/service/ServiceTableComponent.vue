@@ -12,24 +12,18 @@
       </tr>
    </thead>
    <tbody>
-      <tr>
+      <tr v-for="item in services" :key="item.id">
          <td>
-            <span class="avatar avatar-pink" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">GH</span>
+            <span class="avatar avatar-pink" data-toggle="tooltip" data-placement="top" title="" :data-original-title="item.name">{{item.name.slice(0, 2).toUpperCase()}}</span>
          </td>
-         <td>Michelle Green</td>
-         <td>Description</td>
-         <td><span>date</span></td>
+         <td>{{item.name}}</td>
+         <td>{{item.description}}</td>
+         <td><span>{{item.created_at| timeformat}}</span></td>
 
 
          <td>
-            <div class="item-action dropdown">
-               <a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
-               <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(18px, 25px, 0px);">
-                  <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fas fa-edit "></i> Edit </a>
-                  <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-trash text-danger"></i> Delete </a>
-
-               </div>
-            </div>
+             <a role="button" @click="editItem(item)" ><i class="fas fa-edit"></i>  </a> |
+            <a role="button" @click="deleteItem(item)" ><i class=" fa fa-trash text-danger"></i>  </a>
          </td>
       </tr>
 
@@ -41,9 +35,18 @@
 </template>
 
 <script>
-props:['services']
-export default {
 
+export default {
+props:['services'],
+methods:{
+    editItem(item) {
+        return this.$emit("editItem", item);
+    },
+    deleteItem(item){
+
+      return this.$emit("deleteItem", item);
+    }
+}
 }
 </script>
 

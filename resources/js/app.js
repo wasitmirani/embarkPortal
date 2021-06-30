@@ -12,6 +12,7 @@ import Swal from 'sweetalert2'
 import multiselect from 'vue-multiselect'
 import VueProgressBar from 'vue-progressbar'
 import { store } from './store'
+import moment from "moment";
 // register globally
 
 window.Swal = Swal;
@@ -29,7 +30,14 @@ Vue.use(VueProgressBar, {
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 
-
+Vue.filter("timeformat", function(value) {
+    if (value) {
+        return moment
+            .utc(String(value))
+            .local()
+            .fromNow();
+    }
+});
 Vue.prototype.$base_url = window.location.origin;
 
 const app = new Vue({

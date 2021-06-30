@@ -46,6 +46,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      name: null,
+      description: null,
+      thembunail: null,
       editmode: false
     };
   }
@@ -100,15 +103,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-props: ['services'];
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['services'],
+  methods: {
+    editItem: function editItem(item) {
+      return this.$emit("editItem", item);
+    },
+    deleteItem: function deleteItem(item) {
+      return this.$emit("deleteItem", item);
+    }
+  }
+});
 
 /***/ }),
 
@@ -172,6 +177,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -185,11 +193,33 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    getServices: function getServices() {
+    editItem: function editItem(item) {},
+    deleteItem: function deleteItem(item) {
       var _this = this;
 
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios["delete"]("/portal/service" + item.id).then(function (res) {
+            _this.getusers();
+
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          });
+        }
+      });
+    },
+    getServices: function getServices() {
+      var _this2 = this;
+
       axios.get('/portal/services').then(function (res) {
-        _this.services = res.data.services;
+        _this2.services = res.data.services;
       });
     }
   },
@@ -440,7 +470,69 @@ var render = function() {
             _vm._v(_vm._s(_vm.editmode ? "Edit" : "New") + " Service")
           ]),
           _vm._v(" "),
-          _vm._m(0)
+          _c("div", { staticClass: "row " }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { staticClass: "form-label" }, [_vm._v("Name")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.name,
+                      expression: "name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Service Name" },
+                  domProps: { value: _vm.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.name = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "form-group mb-0" }, [
+                _c("label", { staticClass: "form-label" }, [
+                  _vm._v("Description")
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.description,
+                      expression: "description"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    rows: "5",
+                    placeholder: "Here can be your description",
+                    value: ""
+                  },
+                  domProps: { value: _vm.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.description = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-footer text-right" }, [
@@ -454,40 +546,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row " }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "form-label" }, [_vm._v("Name")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", placeholder: "Service Name" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "form-group mb-0" }, [
-          _c("label", { staticClass: "form-label" }, [_vm._v("Description")]),
-          _vm._v(" "),
-          _c("textarea", {
-            staticClass: "form-control",
-            attrs: {
-              rows: "5",
-              placeholder: "Here can be your description",
-              value: ""
-            }
-          })
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -510,38 +569,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "table-responsive" }, [
-        _c(
-          "table",
-          {
-            staticClass:
-              "table table-vcenter table_custom spacing5 border-style mb-0"
-          },
-          [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { staticClass: "w40" }, [_vm._v("#")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Description")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Created At")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "w40" }, [_vm._v("Action")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
+  return _c("div", [
+    _c("div", { staticClass: "table-responsive" }, [
+      _c(
+        "table",
+        {
+          staticClass:
+            "table table-vcenter table_custom spacing5 border-style mb-0"
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.services, function(item) {
+              return _c("tr", { key: item.id }, [
                 _c("td", [
                   _c(
                     "span",
@@ -551,83 +593,75 @@ var staticRenderFns = [
                         "data-toggle": "tooltip",
                         "data-placement": "top",
                         title: "",
-                        "data-original-title": "Avatar Name"
+                        "data-original-title": item.name
                       }
                     },
-                    [_vm._v("GH")]
+                    [_vm._v(_vm._s(item.name.slice(0, 2).toUpperCase()))]
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v("Michelle Green")]),
+                _c("td", [_vm._v(_vm._s(item.name))]),
                 _vm._v(" "),
-                _c("td", [_vm._v("Description")]),
-                _vm._v(" "),
-                _c("td", [_c("span", [_vm._v("date")])]),
+                _c("td", [_vm._v(_vm._s(item.description))]),
                 _vm._v(" "),
                 _c("td", [
-                  _c("div", { staticClass: "item-action dropdown" }, [
-                    _c(
-                      "a",
-                      {
-                        attrs: {
-                          href: "javascript:void(0)",
-                          "data-toggle": "dropdown",
-                          "aria-expanded": "false"
-                        }
-                      },
-                      [_c("i", { staticClass: "fa fa-ellipsis-h" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "dropdown-menu dropdown-menu-right",
-                        staticStyle: {
-                          position: "absolute",
-                          "will-change": "transform",
-                          top: "0px",
-                          left: "0px",
-                          transform: "translate3d(18px, 25px, 0px)"
-                        },
-                        attrs: { "x-placement": "bottom-end" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "dropdown-item",
-                            attrs: { href: "javascript:void(0)" }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "dropdown-icon fas fa-edit "
-                            }),
-                            _vm._v(" Edit ")
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            staticClass: "dropdown-item",
-                            attrs: { href: "javascript:void(0)" }
-                          },
-                          [
-                            _c("i", {
-                              staticClass:
-                                "dropdown-icon fa fa-trash text-danger"
-                            }),
-                            _vm._v(" Delete ")
-                          ]
-                        )
-                      ]
-                    )
+                  _c("span", [
+                    _vm._v(_vm._s(_vm._f("timeformat")(item.created_at)))
                   ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "a",
+                    {
+                      attrs: { role: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.editItem(item)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-edit" })]
+                  ),
+                  _vm._v(" |\n            "),
+                  _c(
+                    "a",
+                    {
+                      attrs: { role: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteItem(item)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: " fa fa-trash text-danger" })]
+                  )
                 ])
               ])
-            ])
-          ]
-        )
+            }),
+            0
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "w40" }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Created At")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w40" }, [_vm._v("Action")])
       ])
     ])
   }
@@ -673,7 +707,19 @@ var render = function() {
                 _c(
                   "div",
                   { staticClass: "card-body" },
-                  [_c("ServiceTable", { attrs: { services: _vm.services } })],
+                  [
+                    _c("ServiceTable", {
+                      attrs: { services: _vm.services },
+                      on: {
+                        editItem: function($event) {
+                          return _vm.edit($event)
+                        },
+                        deleteItem: function($event) {
+                          return _vm.deleteItem($event)
+                        }
+                      }
+                    })
+                  ],
                   1
                 )
               ])
@@ -736,20 +782,7 @@ var staticRenderFns = [
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "header-action" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link",
-                  attrs: {
-                    id: "Departments-tab",
-                    "data-toggle": "tab",
-                    href: "#Departments-grid"
-                  }
-                },
-                [_c("i", { staticClass: "fe fe-plus mr-2" }), _vm._v("Add")]
-              )
-            ])
+            _c("div", { staticClass: "header-action" })
           ]
         )
       ])

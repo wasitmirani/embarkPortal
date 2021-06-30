@@ -8,7 +8,7 @@
             <li class="nav-item"><a class="nav-link" id="Departments-tab" data-toggle="tab" href="#Departments-grid">New Service</a></li>
          </ul>
          <div class="header-action">
-           <a class="nav-link" id="Departments-tab" data-toggle="tab" href="#Departments-grid"><i class="fe fe-plus mr-2"></i>Add</a>
+           <!-- <a  id="Departments-tab" data-toggle="tab" href="#Departments-grid"><i class="fe fe-plus mr-2"></i>Add</a> -->
          </div>
       </div>
    </div>
@@ -30,7 +30,10 @@
             </div>
          </div>
          <div class="card-body">
-             <ServiceTable :services="services"></ServiceTable>
+             <ServiceTable :services="services"
+              v-on:editItem="edit($event)"
+              v-on:deleteItem="deleteItem($event)"
+             ></ServiceTable>
          </div>
       </div>
    </div>
@@ -59,6 +62,29 @@ export default {
         };
     },
     methods:{
+        editItem(item){
+
+        },
+        deleteItem(item){
+                 Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+            axios
+                .delete("/portal/service" + item.id)
+                .then((res) => {
+                this.getusers();
+                Swal.fire("Deleted!", "Your file has been deleted.", "success");
+                });
+            }
+        });
+        },
         getServices(){
             axios.get('/portal/services').then((res)=>{
                 this.services=res.data.services;
