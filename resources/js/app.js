@@ -14,6 +14,12 @@ import VueProgressBar from 'vue-progressbar'
 import { store } from './store'
 import moment from "moment";
 // register globally
+import VueToast from 'vue-toast-notification';
+// Import one of the available themes
+//import 'vue-toast-notification/dist/theme-default.css';
+import 'vue-toast-notification/dist/theme-sugar.css';
+
+Vue.use(VueToast);
 
 window.Swal = Swal;
 Vue.component('pagination', require('laravel-vue-pagination'));

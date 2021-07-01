@@ -25,9 +25,6 @@ class HelperComponent {
                         ]
                     ]
                 ],
-                // [
-                //     "single_link" => setSingleLink(' My inventory ', "icon-basket", null, null, null, '/inventory'),
-                // ],
                 [
                     "g_heading"=>"DIRECTORIES",
                     "menu"=>[
@@ -44,6 +41,29 @@ class HelperComponent {
                                     null,
                                     null,
                                     "/services",
+                                ),
+
+                        ],
+
+                    ],
+
+                ],
+                [
+                    "g_heading"=>"",
+                    "menu"=>[
+                        "title"=>'Project',
+                        "icon"=>"fas fa-tasks",
+                        "color_code"=>"",
+                        "can"=>"",
+                        "v-can"=>"",
+                        "sub_menu"=>[
+                                setSubMenu(
+                                    null,
+                                    "Projects Listing",
+                                    null,
+                                    null,
+                                    null,
+                                    "/projects/listing",
                                 ),
 
                         ],

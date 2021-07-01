@@ -51,6 +51,21 @@ __webpack_require__.r(__webpack_exports__);
       thembunail: null,
       editmode: false
     };
+  },
+  methods: {
+    onSubmit: function onSubmit() {
+      Vue.$toast["default"]('Please wait data is processing!');
+      var formdata = new FormData();
+      formdata.append("name", this.name);
+      formdata.append("description", this.description);
+      formdata.append("thembunail", this.thembunail);
+      formdata.append("id", this.editId);
+      axios.post('/portal/service/store', formdata).then(function (res) {
+        setTimeout(function () {
+          Vue.$toast.success('New service has been saved');
+        }, 1500);
+      });
+    }
   }
 });
 
@@ -464,85 +479,101 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "col-lg-12 justify-content-center" }, [
-      _c("form", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _c("h3", { staticClass: "card-title" }, [
-            _vm._v(_vm._s(_vm.editmode ? "Edit" : "New") + " Service")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row " }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _c("div", { staticClass: "form-group" }, [
-                _c("label", { staticClass: "form-label" }, [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.name,
-                      expression: "name"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", placeholder: "Service Name" },
-                  domProps: { value: _vm.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.name = $event.target.value
-                    }
-                  }
-                })
-              ])
+      _c(
+        "form",
+        {
+          staticClass: "card",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.onSubmit($event)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "card-body" }, [
+            _c("h3", { staticClass: "card-title" }, [
+              _vm._v(_vm._s(_vm.editmode ? "Edit" : "New") + " Service")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-12" }, [
-              _c("div", { staticClass: "form-group mb-0" }, [
-                _c("label", { staticClass: "form-label" }, [
-                  _vm._v("Description")
-                ]),
-                _vm._v(" "),
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.description,
-                      expression: "description"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    rows: "5",
-                    placeholder: "Here can be your description",
-                    value: ""
-                  },
-                  domProps: { value: _vm.description },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+            _c("div", { staticClass: "row " }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { staticClass: "form-label" }, [_vm._v("Name")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.name,
+                        expression: "name"
                       }
-                      _vm.description = $event.target.value
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Service Name",
+                      required: ""
+                    },
+                    domProps: { value: _vm.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.name = $event.target.value
+                      }
                     }
-                  }
-                })
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "form-group mb-0" }, [
+                  _c("label", { staticClass: "form-label" }, [
+                    _vm._v("Description")
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.description,
+                        expression: "description"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      rows: "5",
+                      placeholder: "Here can be your description",
+                      value: ""
+                    },
+                    domProps: { value: _vm.description },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.description = $event.target.value
+                      }
+                    }
+                  })
+                ])
               ])
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer text-right" }, [
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [_vm._v(" " + _vm._s(_vm.editmode ? "Update" : "Submit") + "  ")]
+            )
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-footer text-right" }, [
-          _c(
-            "button",
-            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-            [_vm._v(" " + _vm._s(_vm.editmode ? "Update" : "Submit") + "  ")]
-          )
-        ])
-      ])
+        ]
+      )
     ])
   ])
 }

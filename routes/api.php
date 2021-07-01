@@ -26,4 +26,7 @@ Route::prefix('user')->group(function () {
 
 Route::prefix('portal')->group(function () {
     Route::get('/services',[ServiceController::class,'getServices']);
+    Route::prefix('service')->group(function () {
+        Route::post('/store',[ServiceController::class,'storeService']);
+    });
 });
