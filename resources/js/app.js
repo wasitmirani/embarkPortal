@@ -18,6 +18,13 @@ import VueToast from 'vue-toast-notification';
 // Import one of the available themes
 //import 'vue-toast-notification/dist/theme-default.css';
 import 'vue-toast-notification/dist/theme-sugar.css';
+// import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+
+
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+// Vue.use(BootstrapVue)
+// Vue.use(BootstrapVueIcons)
 
 Vue.use(VueToast);
 

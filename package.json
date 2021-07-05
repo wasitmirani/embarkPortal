@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@revolist/vue-datagrid": "^3.0.9",
+        "bootstrap-vue": "^2.21.2",
         "laravel-vue-pagination": "^2.3.1",
         "moment": "^2.29.1",
         "sweetalert2": "^11.0.18",

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 
 /*
@@ -23,9 +24,11 @@ Route::prefix('user')->group(function () {
     Route::get('/users',[UserController::class,"getUsers"]);
 });
 
+Route::post('/create/project',[ProjectController::class,'storeProject']);
 
 Route::prefix('portal')->group(function () {
     Route::get('/services',[ServiceController::class,'getServices']);
+
     Route::prefix('service')->group(function () {
         Route::post('/store',[ServiceController::class,'storeService']);
     });

@@ -59,11 +59,11 @@ class HelperComponent {
                         "sub_menu"=>[
                                 setSubMenu(
                                     null,
-                                    "Projects Listing",
+                                    "Projects ",
                                     null,
                                     null,
                                     null,
-                                    "/projects/listing",
+                                    "/projects",
                                 ),
 
                         ],

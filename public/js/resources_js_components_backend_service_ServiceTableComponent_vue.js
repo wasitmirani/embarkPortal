@@ -203,7 +203,7 @@ var render = function() {
                     },
                     [_c("i", { staticClass: "fas fa-edit" })]
                   ),
-                  _vm._v(" |\n            "),
+                  _vm._v(" |\r\n            "),
                   _c(
                     "a",
                     {

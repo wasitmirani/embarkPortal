@@ -4,6 +4,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
       <link rel="icon" href="favicon.ico" type="image/x-icon" />
       <title>:: {{config('app.name')}} :: Login</title>
       <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" />
@@ -14,7 +15,7 @@
       <div class="auth">
 
          @yield('content')
-         
+
          <div class="auth_right">
             <div class="carousel slide" data-ride="carousel" data-interval="3000">
                <div class="carousel-inner">

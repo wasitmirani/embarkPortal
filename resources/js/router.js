@@ -30,6 +30,11 @@ const routes = [
         component: () => setComponent("service/Services"),
         name: "Services",
     },
+    {
+        path: "/projects",
+        component: () => setComponent("project/Projects"),
+        name: "Projects",
+    },
 
 ];
 
