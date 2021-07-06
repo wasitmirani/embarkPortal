@@ -74,59 +74,40 @@
                      <thead>
                         <tr>
                            <th class="w40">#</th>
-                           <th>Name</th>
-                           <th>Designation</th>
-                           <th>Address</th>
-                           <th>Rate</th>
-                           <th>Experience</th>
-                           <th>Review</th>
+                           <th>Groom Name</th>
+                           <th>Bride Name</th>
+                           <th>Equipments</th>
+                           <th>Lenses</th>
+                           <th>Cameras</th>
+                           <th>Hours</th>
+                          <th>Date</th>
+                           <th>Time</th>
+                           <th>Attendees</th>
+                           <th>Location</th>
+                           <th>City</th>
+                           <th>State</th>
+                           <th>Country</th>
                            <th class="w40"></th>
                         </tr>
                      </thead>
                      <tbody>
-                        <tr>
+                        <tr v-for="item in projects.data" :key="item.id">
                            <td>
-                              <span class="avatar avatar-pink" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">GH</span>
+                              <span class="avatar avatar-pink" data-toggle="tooltip" data-placement="top" title="" :data-original-title="item.groom_name">{{item.groom_name.substr(0, 2).toUpperCase() }}</span>
                            </td>
-                           <td>Michelle Green</td>
-                           <td>Web Developer</td>
-                           <td><span>123 6th St. Melbourne, FL 32904</span></td>
-                           <td>$34 per hour</td>
-                           <td>2+ Year</td>
-                           <td>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                           </td>
-                           <td>
-                              <div class="item-action dropdown">
-                                 <a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
-                                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(18px, 25px, 0px);">
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                 </div>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>
-                              <img class="avatar" src="assets/images/xs/avatar1.jpg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name" />
-                           </td>
-                           <td>Jason Porter</td>
-                           <td>UI UX Designer</td>
-                           <td><span>123 6th St. Melbourne, FL 32904</span></td>
-                           <td>$61 per hour</td>
-                           <td>5+ Year</td>
-                           <td>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star"></i>
-                           </td>
+                          <td>{{item.groom_name}}</td>
+                           <td>{{item.bride_name}}</td>
+                           <td>{{item.equipments}}</td>
+                           <td>{{item.lenses}}</td>
+                           <td>{{item.cameras}}</td>
+                           <td>{{item.hours}}</td>
+                          <td>{{item.date}}</td>
+                           <td>{{item.time}}</td>
+                           <td>{{item.attendees}}</td>
+                           <td>{{item.location}}</td>
+                           <td>{{item.city}}</td>
+                           <td>{{item.state}}</td>
+                           <td>{{item.zip_code}}</td>
                            <td>
                               <div class="item-action dropdown">
                                  <a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
@@ -138,222 +119,8 @@
                               </div>
                            </td>
                         </tr>
-                        <tr>
-                           <td>
-                              <span class="avatar avatar-indigo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">KL</span>
-                           </td>
-                           <td>David Wallace</td>
-                           <td>Java Developer</td>
-                           <td><span>123 6th St. Melbourne, FL 32904</span></td>
-                           <td>$76 per hour</td>
-                           <td>7+ Year</td>
-                           <td>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star"></i>
-                           </td>
-                           <td>
-                              <div class="item-action dropdown">
-                                 <a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
-                                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(18px, 25px, 0px);">
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                 </div>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>
-                              <span class="avatar avatar-orange" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">KL</span>
-                           </td>
-                           <td>David Wallace</td>
-                           <td>Java Developer</td>
-                           <td><span>123 6th St. Melbourne, FL 32904</span></td>
-                           <td>$76 per hour</td>
-                           <td>7+ Year</td>
-                           <td>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                           </td>
-                           <td>
-                              <div class="item-action dropdown">
-                                 <a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
-                                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(18px, 25px, 0px);">
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                 </div>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>
-                              <img class="avatar" src="assets/images/xs/avatar3.jpg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name" />
-                           </td>
-                           <td>Michelle Green</td>
-                           <td>PHP</td>
-                           <td><span>123 6th St. Melbourne, FL 32904</span></td>
-                           <td>$29 per hour</td>
-                           <td>4+ Year</td>
-                           <td>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star"></i>
-                           </td>
-                           <td>
-                              <div class="item-action dropdown">
-                                 <a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
-                                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(18px, 25px, 0px);">
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                 </div>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>
-                              <img class="avatar" src="assets/images/xs/avatar4.jpg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name" />
-                           </td>
-                           <td>Michelle Green</td>
-                           <td>PHP</td>
-                           <td><span>123 6th St. Melbourne, FL 32904</span></td>
-                           <td>$29 per hour</td>
-                           <td>4+ Year</td>
-                           <td>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star"></i>
-                           </td>
-                           <td>
-                              <div class="item-action dropdown">
-                                 <a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
-                                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(18px, 25px, 0px);">
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                 </div>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>
-                              <span class="avatar avatar-blue" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">KL</span>
-                           </td>
-                           <td>David Wallace</td>
-                           <td>Java Developer</td>
-                           <td><span>123 6th St. Melbourne, FL 32904</span></td>
-                           <td>$76 per hour</td>
-                           <td>7+ Year</td>
-                           <td>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                           </td>
-                           <td>
-                              <div class="item-action dropdown">
-                                 <a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
-                                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(18px, 25px, 0px);">
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                 </div>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>
-                              <img class="avatar" src="assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name" />
-                           </td>
-                           <td>Michelle Green</td>
-                           <td>PHP</td>
-                           <td><span>123 6th St. Melbourne, FL 32904</span></td>
-                           <td>$29 per hour</td>
-                           <td>4+ Year</td>
-                           <td>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star"></i>
-                           </td>
-                           <td>
-                              <div class="item-action dropdown">
-                                 <a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
-                                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(18px, 25px, 0px);">
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                 </div>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>
-                              <img class="avatar" src="assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name" />
-                           </td>
-                           <td>Michelle Green</td>
-                           <td>PHP</td>
-                           <td><span>123 6th St. Melbourne, FL 32904</span></td>
-                           <td>$29 per hour</td>
-                           <td>4+ Year</td>
-                           <td>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star"></i>
-                           </td>
-                           <td>
-                              <div class="item-action dropdown">
-                                 <a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
-                                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(18px, 25px, 0px);">
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                 </div>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>
-                              <span class="avatar avatar-green" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">KL</span>
-                           </td>
-                           <td>David Wallace</td>
-                           <td>Java Developer</td>
-                           <td><span>123 6th St. Melbourne, FL 32904</span></td>
-                           <td>$76 per hour</td>
-                           <td>7+ Year</td>
-                           <td>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                              <i class="fa fa-star text-orange"></i>
-                           </td>
-                           <td>
-                              <div class="item-action dropdown">
-                                 <a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
-                                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(18px, 25px, 0px);">
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                 </div>
-                              </div>
-                           </td>
-                        </tr>
+
+
                      </tbody>
                   </table>
                </div>
@@ -508,6 +275,8 @@ export default {
         return {
             rates:[],
             equipments:[],
+            projects:{},
+            newproject:{},
             equipments_list:[
                   {name:"Drone",value:1},
                   {name:"Gimbal",value:2},
@@ -545,9 +314,17 @@ export default {
             ],
         };
     },
+    mounted(){
+        this.getProjects();
+    },
     methods: {
-
+        getProjects(){
+            axios.get('/projects').then((res)=>{
+                this.projects=res.data.projects;
+            });
+        },
         onSubmit(){
+            Vue.$toast.default("Please wait data is processing",{duration:600});
            let formdata = new FormData();
             formdata.append("name",this.name);
             formdata.append("b_name",this.b_name);
@@ -571,9 +348,16 @@ export default {
             formdata.append("description",this.description);
             formdata.append("user_id",user.id);
             axios.post("/create/project",formdata).then((res)=>{
-                $('#exampleModalLong').modal('hide')
+                $('#exampleModalLong').modal('hide');
+                let item=res.data;
+                setTimeout(() => {
+                       Vue.$toast.success("New project has been created successfuly",{duration:1500});
+                       this.getProjects();
+                       this.$router.push(`/project/invoice/${item.id}`)
+                }, 1600);
 
-            });
+
+                });
         },
         newProject(){
             $('#exampleModalLong').modal('show')

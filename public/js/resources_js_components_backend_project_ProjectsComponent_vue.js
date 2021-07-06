@@ -276,239 +276,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: {
     setBride: function setBride() {
@@ -519,6 +286,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       rates: [],
       equipments: [],
+      projects: {},
+      newproject: {},
       equipments_list: [{
         name: "Drone",
         value: 1
@@ -585,8 +354,23 @@ __webpack_require__.r(__webpack_exports__);
       }]
     };
   },
+  mounted: function mounted() {
+    this.getProjects();
+  },
   methods: {
+    getProjects: function getProjects() {
+      var _this = this;
+
+      axios.get('/projects').then(function (res) {
+        _this.projects = res.data.projects;
+      });
+    },
     onSubmit: function onSubmit() {
+      var _this2 = this;
+
+      Vue.$toast["default"]("Please wait data is processing", {
+        duration: 600
+      });
       var formdata = new FormData();
       formdata.append("name", this.name);
       formdata.append("b_name", this.b_name);
@@ -611,6 +395,16 @@ __webpack_require__.r(__webpack_exports__);
       formdata.append("user_id", user.id);
       axios.post("/create/project", formdata).then(function (res) {
         $('#exampleModalLong').modal('hide');
+        var item = res.data;
+        setTimeout(function () {
+          Vue.$toast.success("New project has been created successfuly", {
+            duration: 1500
+          });
+
+          _this2.getProjects();
+
+          _this2.$router.push("/project/invoice/".concat(item.id));
+        }, 1600);
       });
     },
     newProject: function newProject() {
@@ -825,7 +619,91 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(5),
+    _c("div", { staticClass: "section-body" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "tab-content" }, [
+          _c(
+            "div",
+            {
+              staticClass: "tab-pane fade show active",
+              attrs: { id: "Resumes-list", role: "tabpanel" }
+            },
+            [
+              _c("div", { staticClass: "table-responsive" }, [
+                _c(
+                  "table",
+                  {
+                    staticClass:
+                      "table table-vcenter table_custom spacing5 border-style mb-0"
+                  },
+                  [
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.projects.data, function(item) {
+                        return _c("tr", { key: item.id }, [
+                          _c("td", [
+                            _c(
+                              "span",
+                              {
+                                staticClass: "avatar avatar-pink",
+                                attrs: {
+                                  "data-toggle": "tooltip",
+                                  "data-placement": "top",
+                                  title: "",
+                                  "data-original-title": item.groom_name
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(
+                                    item.groom_name.substr(0, 2).toUpperCase()
+                                  )
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.groom_name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.bride_name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.equipments))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.lenses))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.cameras))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.hours))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.date))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.time))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.attendees))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.location))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.city))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.state))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.zip_code))]),
+                          _vm._v(" "),
+                          _vm._m(6, true)
+                        ])
+                      }),
+                      0
+                    )
+                  ]
+                )
+              ])
+            ]
+          )
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -845,7 +723,7 @@ var render = function() {
           { staticClass: "modal-dialog modal-xl", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(6),
+              _vm._m(7),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "col-lg-12" }, [
@@ -1316,7 +1194,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(7),
+                          _vm._m(8),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-12" }, [
                             _c("div", { staticClass: "form-group mb-0" }, [
@@ -1354,7 +1232,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(8)
+                      _vm._m(9)
                     ]
                   )
                 ])
@@ -1480,1246 +1358,109 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "section-body" }, [
-      _c("div", { staticClass: "container-fluid" }, [
-        _c("div", { staticClass: "tab-content" }, [
-          _c(
-            "div",
-            {
-              staticClass: "tab-pane fade show active",
-              attrs: { id: "Resumes-list", role: "tabpanel" }
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "w40" }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Groom Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Bride Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Equipments")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Lenses")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Cameras")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Hours")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Time")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Attendees")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Location")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("City")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("State")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Country")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w40" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("div", { staticClass: "item-action dropdown" }, [
+        _c(
+          "a",
+          {
+            attrs: {
+              href: "javascript:void(0)",
+              "data-toggle": "dropdown",
+              "aria-expanded": "false"
+            }
+          },
+          [_c("i", { staticClass: "fa fa-ellipsis-h" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "dropdown-menu dropdown-menu-right",
+            staticStyle: {
+              position: "absolute",
+              "will-change": "transform",
+              top: "0px",
+              left: "0px",
+              transform: "translate3d(18px, 25px, 0px)"
             },
-            [
-              _c("div", { staticClass: "table-responsive" }, [
-                _c(
-                  "table",
-                  {
-                    staticClass:
-                      "table table-vcenter table_custom spacing5 border-style mb-0"
-                  },
-                  [
-                    _c("thead", [
-                      _c("tr", [
-                        _c("th", { staticClass: "w40" }, [_vm._v("#")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Name")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Designation")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Address")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Rate")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Experience")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Review")]),
-                        _vm._v(" "),
-                        _c("th", { staticClass: "w40" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("tbody", [
-                      _c("tr", [
-                        _c("td", [
-                          _c(
-                            "span",
-                            {
-                              staticClass: "avatar avatar-pink",
-                              attrs: {
-                                "data-toggle": "tooltip",
-                                "data-placement": "top",
-                                title: "",
-                                "data-original-title": "Avatar Name"
-                              }
-                            },
-                            [_vm._v("GH")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Michelle Green")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Web Developer")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", [
-                            _vm._v("123 6th St. Melbourne, FL 32904")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$34 per hour")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("2+ Year")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star" })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "item-action dropdown" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: "javascript:void(0)",
-                                  "data-toggle": "dropdown",
-                                  "aria-expanded": "false"
-                                }
-                              },
-                              [_c("i", { staticClass: "fa fa-ellipsis-h" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "dropdown-menu dropdown-menu-right",
-                                staticStyle: {
-                                  position: "absolute",
-                                  "will-change": "transform",
-                                  top: "0px",
-                                  left: "0px",
-                                  transform: "translate3d(18px, 25px, 0px)"
-                                },
-                                attrs: { "x-placement": "bottom-end" }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "dropdown-icon fa fa-eye"
-                                    }),
-                                    _vm._v(" View Details ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-share-alt"
-                                    }),
-                                    _vm._v(" Share ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-cloud-download"
-                                    }),
-                                    _vm._v(" Download")
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [
-                          _c("img", {
-                            staticClass: "avatar",
-                            attrs: {
-                              src: "assets/images/xs/avatar1.jpg",
-                              "data-toggle": "tooltip",
-                              "data-placement": "top",
-                              title: "",
-                              "data-original-title": "Avatar Name"
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Jason Porter")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("UI UX Designer")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", [
-                            _vm._v("123 6th St. Melbourne, FL 32904")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$61 per hour")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("5+ Year")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star" })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "item-action dropdown" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: "javascript:void(0)",
-                                  "data-toggle": "dropdown",
-                                  "aria-expanded": "false"
-                                }
-                              },
-                              [_c("i", { staticClass: "fa fa-ellipsis-h" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "dropdown-menu dropdown-menu-right",
-                                staticStyle: {
-                                  position: "absolute",
-                                  "will-change": "transform",
-                                  top: "0px",
-                                  left: "0px",
-                                  transform: "translate3d(18px, 25px, 0px)"
-                                },
-                                attrs: { "x-placement": "bottom-end" }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "dropdown-icon fa fa-eye"
-                                    }),
-                                    _vm._v(" View Details ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-share-alt"
-                                    }),
-                                    _vm._v(" Share ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-cloud-download"
-                                    }),
-                                    _vm._v(" Download")
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [
-                          _c(
-                            "span",
-                            {
-                              staticClass: "avatar avatar-indigo",
-                              attrs: {
-                                "data-toggle": "tooltip",
-                                "data-placement": "top",
-                                title: "",
-                                "data-original-title": "Avatar Name"
-                              }
-                            },
-                            [_vm._v("KL")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("David Wallace")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Java Developer")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", [
-                            _vm._v("123 6th St. Melbourne, FL 32904")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$76 per hour")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("7+ Year")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star" })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "item-action dropdown" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: "javascript:void(0)",
-                                  "data-toggle": "dropdown",
-                                  "aria-expanded": "false"
-                                }
-                              },
-                              [_c("i", { staticClass: "fa fa-ellipsis-h" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "dropdown-menu dropdown-menu-right",
-                                staticStyle: {
-                                  position: "absolute",
-                                  "will-change": "transform",
-                                  top: "0px",
-                                  left: "0px",
-                                  transform: "translate3d(18px, 25px, 0px)"
-                                },
-                                attrs: { "x-placement": "bottom-end" }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "dropdown-icon fa fa-eye"
-                                    }),
-                                    _vm._v(" View Details ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-share-alt"
-                                    }),
-                                    _vm._v(" Share ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-cloud-download"
-                                    }),
-                                    _vm._v(" Download")
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [
-                          _c(
-                            "span",
-                            {
-                              staticClass: "avatar avatar-orange",
-                              attrs: {
-                                "data-toggle": "tooltip",
-                                "data-placement": "top",
-                                title: "",
-                                "data-original-title": "Avatar Name"
-                              }
-                            },
-                            [_vm._v("KL")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("David Wallace")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Java Developer")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", [
-                            _vm._v("123 6th St. Melbourne, FL 32904")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$76 per hour")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("7+ Year")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "item-action dropdown" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: "javascript:void(0)",
-                                  "data-toggle": "dropdown",
-                                  "aria-expanded": "false"
-                                }
-                              },
-                              [_c("i", { staticClass: "fa fa-ellipsis-h" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "dropdown-menu dropdown-menu-right",
-                                staticStyle: {
-                                  position: "absolute",
-                                  "will-change": "transform",
-                                  top: "0px",
-                                  left: "0px",
-                                  transform: "translate3d(18px, 25px, 0px)"
-                                },
-                                attrs: { "x-placement": "bottom-end" }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "dropdown-icon fa fa-eye"
-                                    }),
-                                    _vm._v(" View Details ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-share-alt"
-                                    }),
-                                    _vm._v(" Share ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-cloud-download"
-                                    }),
-                                    _vm._v(" Download")
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [
-                          _c("img", {
-                            staticClass: "avatar",
-                            attrs: {
-                              src: "assets/images/xs/avatar3.jpg",
-                              "data-toggle": "tooltip",
-                              "data-placement": "top",
-                              title: "",
-                              "data-original-title": "Avatar Name"
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Michelle Green")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("PHP")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", [
-                            _vm._v("123 6th St. Melbourne, FL 32904")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$29 per hour")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("4+ Year")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star" })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "item-action dropdown" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: "javascript:void(0)",
-                                  "data-toggle": "dropdown",
-                                  "aria-expanded": "false"
-                                }
-                              },
-                              [_c("i", { staticClass: "fa fa-ellipsis-h" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "dropdown-menu dropdown-menu-right",
-                                staticStyle: {
-                                  position: "absolute",
-                                  "will-change": "transform",
-                                  top: "0px",
-                                  left: "0px",
-                                  transform: "translate3d(18px, 25px, 0px)"
-                                },
-                                attrs: { "x-placement": "bottom-end" }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "dropdown-icon fa fa-eye"
-                                    }),
-                                    _vm._v(" View Details ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-share-alt"
-                                    }),
-                                    _vm._v(" Share ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-cloud-download"
-                                    }),
-                                    _vm._v(" Download")
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [
-                          _c("img", {
-                            staticClass: "avatar",
-                            attrs: {
-                              src: "assets/images/xs/avatar4.jpg",
-                              "data-toggle": "tooltip",
-                              "data-placement": "top",
-                              title: "",
-                              "data-original-title": "Avatar Name"
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Michelle Green")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("PHP")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", [
-                            _vm._v("123 6th St. Melbourne, FL 32904")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$29 per hour")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("4+ Year")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star" })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "item-action dropdown" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: "javascript:void(0)",
-                                  "data-toggle": "dropdown",
-                                  "aria-expanded": "false"
-                                }
-                              },
-                              [_c("i", { staticClass: "fa fa-ellipsis-h" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "dropdown-menu dropdown-menu-right",
-                                staticStyle: {
-                                  position: "absolute",
-                                  "will-change": "transform",
-                                  top: "0px",
-                                  left: "0px",
-                                  transform: "translate3d(18px, 25px, 0px)"
-                                },
-                                attrs: { "x-placement": "bottom-end" }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "dropdown-icon fa fa-eye"
-                                    }),
-                                    _vm._v(" View Details ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-share-alt"
-                                    }),
-                                    _vm._v(" Share ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-cloud-download"
-                                    }),
-                                    _vm._v(" Download")
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [
-                          _c(
-                            "span",
-                            {
-                              staticClass: "avatar avatar-blue",
-                              attrs: {
-                                "data-toggle": "tooltip",
-                                "data-placement": "top",
-                                title: "",
-                                "data-original-title": "Avatar Name"
-                              }
-                            },
-                            [_vm._v("KL")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("David Wallace")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Java Developer")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", [
-                            _vm._v("123 6th St. Melbourne, FL 32904")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$76 per hour")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("7+ Year")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star" })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "item-action dropdown" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: "javascript:void(0)",
-                                  "data-toggle": "dropdown",
-                                  "aria-expanded": "false"
-                                }
-                              },
-                              [_c("i", { staticClass: "fa fa-ellipsis-h" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "dropdown-menu dropdown-menu-right",
-                                staticStyle: {
-                                  position: "absolute",
-                                  "will-change": "transform",
-                                  top: "0px",
-                                  left: "0px",
-                                  transform: "translate3d(18px, 25px, 0px)"
-                                },
-                                attrs: { "x-placement": "bottom-end" }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "dropdown-icon fa fa-eye"
-                                    }),
-                                    _vm._v(" View Details ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-share-alt"
-                                    }),
-                                    _vm._v(" Share ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-cloud-download"
-                                    }),
-                                    _vm._v(" Download")
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [
-                          _c("img", {
-                            staticClass: "avatar",
-                            attrs: {
-                              src: "assets/images/xs/avatar5.jpg",
-                              "data-toggle": "tooltip",
-                              "data-placement": "top",
-                              title: "",
-                              "data-original-title": "Avatar Name"
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Michelle Green")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("PHP")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", [
-                            _vm._v("123 6th St. Melbourne, FL 32904")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$29 per hour")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("4+ Year")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star" })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "item-action dropdown" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: "javascript:void(0)",
-                                  "data-toggle": "dropdown",
-                                  "aria-expanded": "false"
-                                }
-                              },
-                              [_c("i", { staticClass: "fa fa-ellipsis-h" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "dropdown-menu dropdown-menu-right",
-                                staticStyle: {
-                                  position: "absolute",
-                                  "will-change": "transform",
-                                  top: "0px",
-                                  left: "0px",
-                                  transform: "translate3d(18px, 25px, 0px)"
-                                },
-                                attrs: { "x-placement": "bottom-end" }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "dropdown-icon fa fa-eye"
-                                    }),
-                                    _vm._v(" View Details ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-share-alt"
-                                    }),
-                                    _vm._v(" Share ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-cloud-download"
-                                    }),
-                                    _vm._v(" Download")
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [
-                          _c("img", {
-                            staticClass: "avatar",
-                            attrs: {
-                              src: "assets/images/xs/avatar2.jpg",
-                              "data-toggle": "tooltip",
-                              "data-placement": "top",
-                              title: "",
-                              "data-original-title": "Avatar Name"
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Michelle Green")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("PHP")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", [
-                            _vm._v("123 6th St. Melbourne, FL 32904")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$29 per hour")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("4+ Year")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star" })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "item-action dropdown" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: "javascript:void(0)",
-                                  "data-toggle": "dropdown",
-                                  "aria-expanded": "false"
-                                }
-                              },
-                              [_c("i", { staticClass: "fa fa-ellipsis-h" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "dropdown-menu dropdown-menu-right",
-                                staticStyle: {
-                                  position: "absolute",
-                                  "will-change": "transform",
-                                  top: "0px",
-                                  left: "0px",
-                                  transform: "translate3d(18px, 25px, 0px)"
-                                },
-                                attrs: { "x-placement": "bottom-end" }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "dropdown-icon fa fa-eye"
-                                    }),
-                                    _vm._v(" View Details ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-share-alt"
-                                    }),
-                                    _vm._v(" Share ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-cloud-download"
-                                    }),
-                                    _vm._v(" Download")
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [
-                          _c(
-                            "span",
-                            {
-                              staticClass: "avatar avatar-green",
-                              attrs: {
-                                "data-toggle": "tooltip",
-                                "data-placement": "top",
-                                title: "",
-                                "data-original-title": "Avatar Name"
-                              }
-                            },
-                            [_vm._v("KL")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("David Wallace")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Java Developer")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", [
-                            _vm._v("123 6th St. Melbourne, FL 32904")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$76 per hour")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("7+ Year")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" }),
-                          _vm._v(" "),
-                          _c("i", { staticClass: "fa fa-star text-orange" })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "item-action dropdown" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: "javascript:void(0)",
-                                  "data-toggle": "dropdown",
-                                  "aria-expanded": "false"
-                                }
-                              },
-                              [_c("i", { staticClass: "fa fa-ellipsis-h" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "dropdown-menu dropdown-menu-right",
-                                staticStyle: {
-                                  position: "absolute",
-                                  "will-change": "transform",
-                                  top: "0px",
-                                  left: "0px",
-                                  transform: "translate3d(18px, 25px, 0px)"
-                                },
-                                attrs: { "x-placement": "bottom-end" }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "dropdown-icon fa fa-eye"
-                                    }),
-                                    _vm._v(" View Details ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-share-alt"
-                                    }),
-                                    _vm._v(" Share ")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "javascript:void(0)" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "dropdown-icon fa fa-cloud-download"
-                                    }),
-                                    _vm._v(" Download")
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
-                        ])
-                      ])
-                    ])
-                  ]
-                )
-              ])
-            ]
-          )
-        ])
+            attrs: { "x-placement": "bottom-end" }
+          },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item",
+                attrs: { href: "javascript:void(0)" }
+              },
+              [
+                _c("i", { staticClass: "dropdown-icon fa fa-eye" }),
+                _vm._v(" View Details ")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item",
+                attrs: { href: "javascript:void(0)" }
+              },
+              [
+                _c("i", { staticClass: "dropdown-icon fa fa-share-alt" }),
+                _vm._v(" Share ")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item",
+                attrs: { href: "javascript:void(0)" }
+              },
+              [
+                _c("i", { staticClass: "dropdown-icon fa fa-cloud-download" }),
+                _vm._v(" Download")
+              ]
+            )
+          ]
+        )
       ])
     ])
   },

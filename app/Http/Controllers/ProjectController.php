@@ -8,7 +8,17 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
     //
+    public function getProjects(Request $request){
+        $query = request('query');
+        $projects = Project::orderBy('groom_name', 'ASC')
+        ->where('groom_name', 'like', '%' . $query . '%')
+        ->orWhere('bride_name', 'like', '%' . $query . '%')
+        ->orWhere('equipments', 'like', '%' . $query . '%')
+        ->orWhere('lenses', 'like', '%' . $query . '%')
+        ->paginate(env('PER_PAGE'));
 
+        return response()->json(['projects'=>$projects]);
+    }
     public function storeProject(Request $request){
 
 
@@ -24,8 +34,8 @@ class ProjectController extends Controller
             'zip_code'=>$request->zip_code,
             'hours'=>$request->hours,
             'attendees'=>$request->attendees,
-            'equipments'=>json_encode($request->equipments),
-            'lenses'=>json_encode($request->lenses),
+            'equipments'=>$request->equipments,
+            'lenses'=>$request->lenses,
             'description'=>$request->description,
             'user_id'=>$request->user_id,
         ]);

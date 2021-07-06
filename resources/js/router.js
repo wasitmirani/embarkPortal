@@ -35,6 +35,11 @@ const routes = [
         component: () => setComponent("project/Projects"),
         name: "Projects",
     },
+    {
+        path: "/project/invoice/:id",
+        component: () => setComponent("project/Invoice"),
+        name: "Project Invoice",
+    },
 
 ];
 
