@@ -279,7 +279,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: {
     setBride: function setBride() {
-      this.b_name = "EW-" + this.name;
+      this.title = "EW-" + this.name + " " + this.b_name;
     }
   },
   data: function data() {
@@ -324,8 +324,9 @@ __webpack_require__.r(__webpack_exports__);
         name: "18-105mm f4 (or lower)",
         value: 5
       }],
-      name: null,
-      b_name: null,
+      name: "",
+      title: "",
+      b_name: "",
       date: null,
       time: null,
       cameras: null,
@@ -372,6 +373,7 @@ __webpack_require__.r(__webpack_exports__);
         duration: 600
       });
       var formdata = new FormData();
+      formdata.append("title", this.title);
       formdata.append("name", this.name);
       formdata.append("b_name", this.b_name);
       formdata.append("date", this.date);
@@ -691,7 +693,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(item.zip_code))]),
                           _vm._v(" "),
-                          _vm._m(6, true)
+                          _c("td")
                         ])
                       }),
                       0
@@ -723,7 +725,7 @@ var render = function() {
           { staticClass: "modal-dialog modal-xl", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(7),
+              _vm._m(6),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "col-lg-12" }, [
@@ -759,7 +761,6 @@ var render = function() {
                                 staticClass: "form-control",
                                 attrs: {
                                   type: "text",
-                                  state: _vm.setBride,
                                   placeholder: "Groom Name",
                                   required: ""
                                 },
@@ -794,8 +795,8 @@ var render = function() {
                                 staticClass: "form-control",
                                 attrs: {
                                   type: "text",
-                                  placeholder: "Bride Name",
-                                  readonly: ""
+                                  state: _vm.setBride,
+                                  placeholder: "Bride Name"
                                 },
                                 domProps: { value: _vm.b_name },
                                 on: {
@@ -837,6 +838,40 @@ var render = function() {
                                       return
                                     }
                                     _vm.attendees = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", { staticClass: "form-label" }, [
+                                _vm._v("Project Title")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.title,
+                                    expression: "title"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Title",
+                                  readonly: ""
+                                },
+                                domProps: { value: _vm.title },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.title = $event.target.value
                                   }
                                 }
                               })
@@ -1194,7 +1229,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(8),
+                          _vm._m(7),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-12" }, [
                             _c("div", { staticClass: "form-group mb-0" }, [
@@ -1232,7 +1267,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(9)
+                      _vm._m(8)
                     ]
                   )
                 ])
@@ -1389,78 +1424,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Country")]),
         _vm._v(" "),
         _c("th", { staticClass: "w40" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("div", { staticClass: "item-action dropdown" }, [
-        _c(
-          "a",
-          {
-            attrs: {
-              href: "javascript:void(0)",
-              "data-toggle": "dropdown",
-              "aria-expanded": "false"
-            }
-          },
-          [_c("i", { staticClass: "fa fa-ellipsis-h" })]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "dropdown-menu dropdown-menu-right",
-            staticStyle: {
-              position: "absolute",
-              "will-change": "transform",
-              top: "0px",
-              left: "0px",
-              transform: "translate3d(18px, 25px, 0px)"
-            },
-            attrs: { "x-placement": "bottom-end" }
-          },
-          [
-            _c(
-              "a",
-              {
-                staticClass: "dropdown-item",
-                attrs: { href: "javascript:void(0)" }
-              },
-              [
-                _c("i", { staticClass: "dropdown-icon fa fa-eye" }),
-                _vm._v(" View Details ")
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "dropdown-item",
-                attrs: { href: "javascript:void(0)" }
-              },
-              [
-                _c("i", { staticClass: "dropdown-icon fa fa-share-alt" }),
-                _vm._v(" Share ")
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "dropdown-item",
-                attrs: { href: "javascript:void(0)" }
-              },
-              [
-                _c("i", { staticClass: "dropdown-icon fa fa-cloud-download" }),
-                _vm._v(" Download")
-              ]
-            )
-          ]
-        )
       ])
     ])
   },

@@ -42,10 +42,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <address>
-                                <strong>Epic Theme Inc.</strong> <small class="float-right">16/05/2018</small><br>
-                                795 Folsom Ave, Suite 546<br>
-                                San Francisco, CA 54656<br>
-                                <abbr title="Phone">P:</abbr> (123) 456-34636
+                                <strong>{{project.title}}.</strong> <h5 class="float-right">{{project.date}}</h5><br>
+                                Location: <strong>{{project.location}}</strong><br>
+                                {{project.city}}, {{project.state}} {{project.zip_code}}<br>
+                                <abbr title="Phone">Phone:</abbr> (123) 456-34636
                                 </address>
                             </div>
                         </div>
@@ -53,27 +53,34 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Item</th>
+
+                                    <th>Groom Name</th>
+                                    <th>Bride Name</th>
+                                    <th>Equipments</th>
+                                    <th>Lenses</th>
+                                    <th>Cameras</th>
+                                    <th>Hours</th>
+                                    <th>Date/Time</th>
+                                    <th>Attendees</th>
                                     <th>Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Simple Black Clock</td>
-                                    <td>$30</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Brone Candle</td>
-                                    <td>$25</td>
+                                    <td>{{project.groom_name}}</td>
+                                    <td>{{project.bride_name}}</td>
+                                    <td>{{project.equipments}}</td>
+                                    <td>{{project.lenses}}</td>
+                                    <td>{{project.cameras}}</td>
+                                    <td>{{project.hours	}}</td>
+                                    <td>{{project.date + " "+project.time}}</td>
+                                    <td>{{project.attendees}}</td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
                                 <tr>
                                     <td></td>
-                                    <td></td>
+                                    <td colspan="7"></td>
                                     <td><strong>$55</strong></td>
                                 </tr>
                                 </tfoot>
@@ -81,7 +88,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 align-right">
-                                <button class="btn btn-warning"><i class="icon-printer"></i></button>
+                                <button class="btn btn-warning" @click="printdata"><i class="icon-printer"></i></button>
                                 <button class="btn btn-primary">Pay Now</button>
                             </div>
                         </div>
@@ -100,7 +107,27 @@
 
 <script>
 export default {
+    data:()=>{
+        return{
+            project_id:"",
+            project:{},
+        }
+    },
+    mounted(){
+    this.getProject();
+    },
+    methods: {
+        printdata(){
+             console.log(this.$route.params.id);
+            window.print();
 
+        },
+        getProject(){
+            axios.get('/project/'+this.$route.params.id).then((res)=>{
+                this.project=res.data;
+            });
+        },
+    },
 }
 </script>
 

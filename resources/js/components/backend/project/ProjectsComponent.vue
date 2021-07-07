@@ -109,14 +109,7 @@
                            <td>{{item.state}}</td>
                            <td>{{item.zip_code}}</td>
                            <td>
-                              <div class="item-action dropdown">
-                                 <a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
-                                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(18px, 25px, 0px);">
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                 </div>
-                              </div>
+
                            </td>
                         </tr>
 
@@ -146,22 +139,29 @@
    <div class="card-body">
       <!-- <h3 class="card-title">Edit Profile</h3> -->
       <div class="row">
+
          <div class="col-md-4">
             <div class="form-group">
                <label class="form-label">Groom Name</label>
-               <input type="text" v-model="name" class="form-control"  :state="setBride" placeholder="Groom Name"  required>
+               <input type="text" v-model="name" class="form-control"   placeholder="Groom Name"  required>
             </div>
          </div>
           <div class="col-md-4">
             <div class="form-group">
                <label class="form-label">Bride Name</label>
-               <input type="text" v-model="b_name" class="form-control"   placeholder="Bride Name"  readonly>
+               <input type="text" v-model="b_name" class="form-control" :state="setBride"  placeholder="Bride Name"  >
             </div>
          </div>
        <div class="col-md-4">
             <div class="form-group">
                <label class="form-label">Attendees</label>
                <input type="number" v-model="attendees" class="form-control"   placeholder="Attendees"  >
+            </div>
+         </div>
+            <div class="col-md-12">
+            <div class="form-group">
+               <label class="form-label">Project Title</label>
+               <input type="text" v-model="title" class="form-control"   placeholder="Title"  readonly>
             </div>
          </div>
          <div class="col-sm-6 col-md-4">
@@ -268,7 +268,7 @@ export default {
     computed:{
         setBride(){
 
-            this.b_name="EW-"+this.name;
+           this.title="EW-"+this.name+" "+ this.b_name;
         }
     },
     data(){
@@ -293,8 +293,9 @@ export default {
                   {name:"70-200mm (f4) or lower)",value:4},
                   {name:"18-105mm f4 (or lower)",value:5},
             ],
-            name:null,
-            b_name:null,
+            name:"",
+            title:"",
+            b_name:"",
             date:null,
             time:null,
             cameras:null,
@@ -326,6 +327,7 @@ export default {
         onSubmit(){
             Vue.$toast.default("Please wait data is processing",{duration:600});
            let formdata = new FormData();
+             formdata.append("title",this.title);
             formdata.append("name",this.name);
             formdata.append("b_name",this.b_name);
             formdata.append("date",this.date);

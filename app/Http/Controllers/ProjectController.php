@@ -19,6 +19,10 @@ class ProjectController extends Controller
 
         return response()->json(['projects'=>$projects]);
     }
+    public function getProject(Request $request){
+        $project = Project::FindorFail($request->id);
+        return response()->json( $project);
+    }
     public function storeProject(Request $request){
 
 
@@ -38,6 +42,7 @@ class ProjectController extends Controller
             'lenses'=>$request->lenses,
             'description'=>$request->description,
             'user_id'=>$request->user_id,
+            'title'=>$request->title,
         ]);
 
         return response()->json($project);

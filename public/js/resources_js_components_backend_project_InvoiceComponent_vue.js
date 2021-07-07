@@ -111,7 +111,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      project_id: "",
+      project: {}
+    };
+  },
+  mounted: function mounted() {
+    this.getProject();
+  },
+  methods: {
+    printdata: function printdata() {
+      console.log(this.$route.params.id);
+      window.print();
+    },
+    getProject: function getProject() {
+      var _this = this;
+
+      axios.get('/project/' + this.$route.params.id).then(function (res) {
+        _this.project = res.data;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -203,246 +233,95 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", [
-        _c("div", { staticClass: "section-body" }, [
-          _c("div", { staticClass: "container-fluid" }, [
-            _c(
-              "div",
-              {
-                staticClass: "d-flex justify-content-between align-items-center"
-              },
-              [
-                _c("ul", { staticClass: "nav nav-tabs page-header-tab" }, [
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link active",
-                        attrs: {
-                          id: "Resumes-tab",
-                          "data-toggle": "tab",
-                          href: "#Resumes-list"
-                        }
-                      },
-                      [_vm._v("Project Invoice")]
-                    )
-                  ])
-                ]),
+  return _c("div", [
+    _c("div", [
+      _c("div", { staticClass: "section-body" }, [
+        _c("div", { staticClass: "container-fluid" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "row clearfix" }, [
+            _c("div", { staticClass: "col-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _vm._m(1),
                 _vm._v(" "),
-                _c("div", { staticClass: "header-action d-md-flex" }, [
-                  _c("div", { staticClass: "input-group mr-2" })
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "row clearfix" }, [
-              _c("div", { staticClass: "col-12" }, [
-                _c("div", { staticClass: "card" }, [
-                  _c("div", { staticClass: "card-header" }, [
-                    _c("h3", { staticClass: "card-title" }, [
-                      _vm._v("Invoice")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-options" }, [
-                      _c("div", { staticClass: "item-action dropdown ml-2" }, [
-                        _c(
-                          "div",
-                          { staticClass: "dropdown-menu dropdown-menu-right" },
-                          [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "dropdown-item",
-                                attrs: { href: "javascript:void(0)" }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "dropdown-icon fa fa-eye"
-                                }),
-                                _vm._v(" View Details ")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "dropdown-item",
-                                attrs: { href: "javascript:void(0)" }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "dropdown-icon fa fa-share-alt"
-                                }),
-                                _vm._v(" Share ")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "dropdown-item",
-                                attrs: { href: "javascript:void(0)" }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass:
-                                    "dropdown-icon fa fa-cloud-download"
-                                }),
-                                _vm._v(" Download")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "dropdown-divider" }),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "dropdown-item",
-                                attrs: { href: "javascript:void(0)" }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "dropdown-icon fa fa-copy"
-                                }),
-                                _vm._v(" Copy to")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "dropdown-item",
-                                attrs: { href: "javascript:void(0)" }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "dropdown-icon fa fa-folder"
-                                }),
-                                _vm._v(" Move to")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "dropdown-item",
-                                attrs: { href: "javascript:void(0)" }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "dropdown-icon fa fa-edit"
-                                }),
-                                _vm._v(" Rename")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "dropdown-item",
-                                attrs: { href: "javascript:void(0)" }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "dropdown-icon fa fa-trash"
-                                }),
-                                _vm._v(" Delete")
-                              ]
-                            )
-                          ]
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("address", [
+                        _c("strong", [_vm._v(_vm._s(_vm.project.title) + ".")]),
+                        _vm._v(" "),
+                        _c("h5", { staticClass: "float-right" }, [
+                          _vm._v(_vm._s(_vm.project.date))
+                        ]),
+                        _c("br"),
+                        _vm._v("\n                              Location: "),
+                        _c("strong", [_vm._v(_vm._s(_vm.project.location))]),
+                        _c("br"),
+                        _vm._v(
+                          "\n                              " +
+                            _vm._s(_vm.project.city) +
+                            ", " +
+                            _vm._s(_vm.project.state) +
+                            " " +
+                            _vm._s(_vm.project.zip_code)
+                        ),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("abbr", { attrs: { title: "Phone" } }, [
+                          _vm._v("Phone:")
+                        ]),
+                        _vm._v(
+                          " (123) 456-34636\n                              "
                         )
                       ])
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _c("address", [
-                          _c("strong", [_vm._v("Epic Theme Inc.")]),
+                  _c("div", { staticClass: "table-responsive" }, [
+                    _c("table", { staticClass: "table table-hover" }, [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("tbody", [
+                        _c("tr", [
+                          _c("td", [_vm._v(_vm._s(_vm.project.groom_name))]),
                           _vm._v(" "),
-                          _c("small", { staticClass: "float-right" }, [
-                            _vm._v("16/05/2018")
-                          ]),
-                          _c("br"),
-                          _vm._v(
-                            "\n                              795 Folsom Ave, Suite 546"
-                          ),
-                          _c("br"),
-                          _vm._v(
-                            "\n                              San Francisco, CA 54656"
-                          ),
-                          _c("br"),
+                          _c("td", [_vm._v(_vm._s(_vm.project.bride_name))]),
                           _vm._v(" "),
-                          _c("abbr", { attrs: { title: "Phone" } }, [
-                            _vm._v("P:")
-                          ]),
-                          _vm._v(
-                            " (123) 456-34636\n                              "
-                          )
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "table-responsive" }, [
-                      _c("table", { staticClass: "table table-hover" }, [
-                        _c("thead", [
-                          _c("tr", [
-                            _c("th", [_vm._v("#")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v("Item")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v("Total")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tbody", [
-                          _c("tr", [
-                            _c("td", [_vm._v("1")]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("Simple Black Clock")]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("$30")])
+                          _c("td", [_vm._v(_vm._s(_vm.project.equipments))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(_vm.project.lenses))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(_vm.project.cameras))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(_vm.project.hours))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(_vm.project.date + " " + _vm.project.time)
+                            )
                           ]),
                           _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [_vm._v("2")]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("Brone Candle")]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("$25")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tfoot", [
-                          _c("tr", [
-                            _c("td"),
-                            _vm._v(" "),
-                            _c("td"),
-                            _vm._v(" "),
-                            _c("td", [_c("strong", [_vm._v("$55")])])
-                          ])
+                          _c("td", [_vm._v(_vm._s(_vm.project.attendees))])
                         ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-12 align-right" }, [
-                        _c("button", { staticClass: "btn btn-warning" }, [
-                          _c("i", { staticClass: "icon-printer" })
-                        ]),
-                        _vm._v(" "),
-                        _c("button", { staticClass: "btn btn-primary" }, [
-                          _vm._v("Pay Now")
-                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(3)
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-12 align-right" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-warning",
+                          on: { click: _vm.printdata }
+                        },
+                        [_c("i", { staticClass: "icon-printer" })]
+                      ),
+                      _vm._v(" "),
+                      _c("button", { staticClass: "btn btn-primary" }, [
+                        _vm._v("Pay Now")
                       ])
                     ])
                   ])
@@ -451,6 +330,179 @@ var staticRenderFns = [
             ])
           ])
         ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex justify-content-between align-items-center" },
+      [
+        _c("ul", { staticClass: "nav nav-tabs page-header-tab" }, [
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link active",
+                attrs: {
+                  id: "Resumes-tab",
+                  "data-toggle": "tab",
+                  href: "#Resumes-list"
+                }
+              },
+              [_vm._v("Project Invoice")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "header-action d-md-flex" }, [
+          _c("div", { staticClass: "input-group mr-2" })
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Invoice")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-options" }, [
+        _c("div", { staticClass: "item-action dropdown ml-2" }, [
+          _c("div", { staticClass: "dropdown-menu dropdown-menu-right" }, [
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item",
+                attrs: { href: "javascript:void(0)" }
+              },
+              [
+                _c("i", { staticClass: "dropdown-icon fa fa-eye" }),
+                _vm._v(" View Details ")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item",
+                attrs: { href: "javascript:void(0)" }
+              },
+              [
+                _c("i", { staticClass: "dropdown-icon fa fa-share-alt" }),
+                _vm._v(" Share ")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item",
+                attrs: { href: "javascript:void(0)" }
+              },
+              [
+                _c("i", { staticClass: "dropdown-icon fa fa-cloud-download" }),
+                _vm._v(" Download")
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "dropdown-divider" }),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item",
+                attrs: { href: "javascript:void(0)" }
+              },
+              [
+                _c("i", { staticClass: "dropdown-icon fa fa-copy" }),
+                _vm._v(" Copy to")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item",
+                attrs: { href: "javascript:void(0)" }
+              },
+              [
+                _c("i", { staticClass: "dropdown-icon fa fa-folder" }),
+                _vm._v(" Move to")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item",
+                attrs: { href: "javascript:void(0)" }
+              },
+              [
+                _c("i", { staticClass: "dropdown-icon fa fa-edit" }),
+                _vm._v(" Rename")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item",
+                attrs: { href: "javascript:void(0)" }
+              },
+              [
+                _c("i", { staticClass: "dropdown-icon fa fa-trash" }),
+                _vm._v(" Delete")
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Groom Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Bride Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Equipments")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Lenses")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Cameras")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Hours")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Date/Time")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Attendees")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tfoot", [
+      _c("tr", [
+        _c("td"),
+        _vm._v(" "),
+        _c("td", { attrs: { colspan: "7" } }),
+        _vm._v(" "),
+        _c("td", [_c("strong", [_vm._v("$55")])])
       ])
     ])
   }
